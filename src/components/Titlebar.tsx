@@ -29,7 +29,11 @@ export default function Titlebar() {
         <AppBar sx={{ bgcolor: pokemon?.palette[3] || "#ddd" }} elevation={1}>
           <Toolbar>
             <Box sx={{ display: "flex" }}>
-              <img src="/logo.png" alt="logo" width="40px" />
+              <img
+                src={process.env.PUBLIC_URL + "/logo.png"}
+                alt="logo"
+                width="40px"
+              />
               <Typography
                 variant="h5"
                 sx={{ my: "auto", ml: 1, display: { xs: "none", sm: "block" } }}
