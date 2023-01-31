@@ -11,7 +11,7 @@ export const PokeContainer = styled(Box)(({ theme }) => ({
     width: "33%",
     boxShadow: theme.shadows[20],
     borderRadius: "50px",
-    backgroundColor: "#ffffff30",
+    backgroundColor: "#ffffff50",
   },
   ".poke_info": {
     display: "flex",
@@ -94,10 +94,10 @@ export const PokeContainer = styled(Box)(({ theme }) => ({
           justifyContent: "space-between",
         },
         ".stats": {
-          width: "100%",
+          width: "auto",
           marginTop: theme.spacing(1),
           padding: theme.spacing(0, 2),
-          marginLeft: "none",
+          marginLeft: 0,
           ".MuiTypography-h3": {
             fontSize: "2rem",
           },
