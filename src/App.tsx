@@ -3,6 +3,7 @@ import { CircularProgress, Container } from "@mui/material";
 
 import usePokedex from "./pokedex";
 import { Paginator, PokemonInfo, Titlebar } from "./components";
+import { Toaster } from "react-hot-toast";
 
 export default function App() {
   const pokemon = usePokedex((state) => state.currentPokemon); // current page pokemon
@@ -21,6 +22,7 @@ export default function App() {
 
   return (
     <>
+      <Toaster />
       <Titlebar />
       <Container
         maxWidth="xl"

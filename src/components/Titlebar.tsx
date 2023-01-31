@@ -48,6 +48,7 @@ export default function Titlebar() {
                 <InputBase
                   placeholder="Search by id / name"
                   name="poke-search"
+                  autoComplete="off"
                 />
               </form>
             </SearchBar>
