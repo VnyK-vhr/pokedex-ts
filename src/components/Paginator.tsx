@@ -14,16 +14,7 @@ export default function Paginator() {
   const setPokemon = usePokedex((state) => state.setPokemon);
 
   return (
-    <Box
-      sx={{
-        mx: "auto",
-        py: 2,
-        mt: "auto",
-        "@media only screen and (max-width: 200px)": {
-          mt: 2,
-        },
-      }}
-    >
+    <Box>
       <Pagination
         count={1008}
         boundaryCount={2}
