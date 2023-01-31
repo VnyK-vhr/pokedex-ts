@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import toast from "react-hot-toast";
 import { mountStoreDevtool } from "simple-zustand-devtools";
 import Extractor from "node-vibrant";
 import { Palette } from "node-vibrant/lib/color";
@@ -27,24 +28,39 @@ const usePokedex = create<Pokedex>((set, get) => ({
       (p) => (typeof id === "string" ? p.name : p.id) === id
     );
     // Call PokeAPI if not found
-    if (!found_pokemon)
-      getPokemonInfo(id)
+    if (!found_pokemon) {
+      let promise = getPokemonInfo(id.toString().toLowerCase());
+
+      if (get().pokemon.length) {
+        toast.promise(
+          promise,
+          {
+            loading: "Searching your Pokemon",
+            success: (pokemon: Pokemon) => "Here's " + pokemon.name,
+            error: "Oops! Pokemon not found",
+          },
+          { duration: 3000, id: "api" }
+        );
+      }
+
+      promise
         .then((pokemon) => {
           // Extract colors from pokemon image
           Extractor.from(getImageLink(pokemon.id))
             .getSwatches()
-            .then((swatches) =>
+            .then((swatches) => {
               set((current) => ({
                 pokemon: [
                   ...current.pokemon,
                   { ...pokemon, palette: getHex(swatches) },
                 ].sort((a, b) => a.id - b.id),
                 currentPokemon: { ...pokemon, palette: getHex(swatches) },
-              }))
-            )
-            .catch(console.log);
+              }));
+            })
+            .catch(() => {});
         })
-        .catch(console.log);
+        .catch(() => {});
+    }
     // Update current pokemon
     else set({ currentPokemon: found_pokemon });
   },
