@@ -29,7 +29,7 @@ const usePokedex = create<Pokedex>((set, get) => ({
     );
     // Call PokeAPI if not found
     if (!found_pokemon) {
-      let promise = getPokemonInfo(id.toString().toLowerCase());
+      let promise = getPokemonInfo(id.toString().toLowerCase().trim());
 
       if (get().pokemon.length) {
         toast.promise(
